@@ -4,6 +4,7 @@ using SimpleImagesGallery.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SimpleImageGallery.Services
 {
@@ -30,6 +31,37 @@ namespace SimpleImageGallery.Services
         {
             return GetImages()
                 .Where(img => img.Tags.Any(t => t.Description == tag));
+        }
+
+        public async Task SetImage(string title, string tags, string uri)
+        {
+            var image = new GalleryImage()
+            {
+                Title = title,
+                Tags = ParseTags(tags),
+                Url = uri,
+                Created = DateTime.Now
+            };
+
+            _context.Add(image);
+            await _context.SaveChangesAsync();
+        }
+
+        private List<ImageTag> ParseTags(string tags)
+        {
+            var tagList = tags.Split(",").ToList();
+
+            var imagesTags = new List<ImageTag>();
+
+            foreach (var tag in tagList)
+            {
+                imagesTags.Add(new ImageTag()
+                {
+                    Description = tag,
+                });
+            }
+
+            return imagesTags;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SimpleImagesGallery.Data
 {
@@ -10,5 +11,6 @@ namespace SimpleImagesGallery.Data
         IEnumerable<GalleryImage> GetImages();
         IEnumerable<GalleryImage> GetWithTag(string tag);
         GalleryImage GetById(int id);
+        Task SetImage(string title, string tags, string uri);
     }
 }
