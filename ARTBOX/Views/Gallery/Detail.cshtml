@@ -1,0 +1,14 @@
+﻿@model ARTBOX.Models.ImageDetailViewModel
+
+<div class="card mx-auto d-block" style="min-width:200px; max-width:400px; margin:20px;">
+
+	<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.ImageTitle" />
+
+	<div class="card-body">
+		<h4>Title: @Model.ImageTitle</h4>
+		<p>Uploaded: @Model.ImageCreated</p>
+
+		<a class="btn btn-primary" asp-controller="gallery" asp-action="index">Back to Gallery</a>
+	</div>
+
+</div>
